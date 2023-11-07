@@ -1,26 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <title>Document</title>
-  </head>
-<style>
-  .img{
-    height: 100px;
-    width: 100px;
-  }
-</style>
-  <body>
-    <div class="img">
-      <img src="1.jpg" alt="">
-    </div>
-    <div class="container">
-      <canvas id="can"></canvas>
-    </div>
-    <script src="imageDATA.JS"></script>
-    <script src="main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+
+
+  <div class="md:flex block bg-slate-700 m-4">
+ 
+    <div class="input md:w-[25%] w-full">
+      <input type="file" name="" id="image" accept="image/*" class=" m-3" />
+      <div class="image_container" style="display: none">
+        <img src="" alt="" class="img" />
+      </div>
+    </div> 
+ 
+     <div class="canvas md:w-[75%] h-full w-full center ">
+      <canvas id="can" class=" md:w-[500px] md:h-[500px]" ></canvas>
+
+    </div> 
+  </div>
+
+  <script></script>
+  <script src="imageDATA.JS"></script>
+  <script src="main.js"></script>
+  
+</body>
 </html>

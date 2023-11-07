@@ -1,17 +1,28 @@
 const canvas = document.getElementById("can");
 const c = canvas.getContext("2d");
 const c2 = canvas.getContext("2d");
-var H = (canvas.height = window.innerHeight / 1.3);
-var W = (canvas.width = window.innerWidth / 2);
-window.addEventListener("resize", () => {
-  canvas.heigth = window.innerHeight / 2;
-  canvas.width = window.innerWidth / 2;
-});
-const row = 4;
-const col = 4;
+const rect = canvas.getBoundingClientRect();
+var H = canvas.height = rect.height;
+var W = canvas.width = rect.width;
+const row = 5;
+const col = 5;
 const imgPx = new imgPixels(W, H, row, col);
 const img = new Image();
-img.src = "./1.jpg";
+
+
+document.querySelector("#image").addEventListener("change",(e)=>{
+  console.log(e.target.files)
+
+  const selectedFile = e.target.files[0];
+  if (selectedFile) {
+  const imageUrl = URL.createObjectURL(selectedFile); // Create a URL for the selected image
+document.querySelector('.img').src=imageUrl
+img.src=imageUrl
+document.querySelector('.image_container').style.display="block"
+}
+
+})
+// imgPx.drawBoard(c); 
 var imageData = [];
 let arr = [];
 var k = 0;
@@ -48,12 +59,12 @@ img.addEventListener("load", () => {
       );
       // push the images parts into imageData array after then
       if (i * j < (row - 1) * (col - 1)) {
+        let index=i * col + j
         imageData.push({
           // in this push we gonna push object having image parts value and its random i,j position values associated with that particular image portion
           img: imgData,
-
-          x: arr[i * row + j].x,
-          y: arr[i * row + j].y,
+          x: arr[index].x,
+          y: arr[index].y,
         });
       }
     }
@@ -109,9 +120,12 @@ img.addEventListener("load", () => {
   }
 
   function swapHelper(arrA, arrB, index) {
+    // x position swap
     tempX = arrA[arrA.length - 1].x;
     arrA[arrA.length - 1].x = arrB[index].x;
     arrB[index].x = tempX;
+
+    // y position swap
     tempY = arrA[arrA.length - 1].y;
     arrA[arrA.length - 1].y = arrB[index].y;
     arrB[index].y = tempY;
@@ -157,10 +171,12 @@ img.addEventListener("load", () => {
     }
   });
 
+
   function animate() {
-    canvas.heigth = window.innerHeight / 2;
-    canvas.width = window.innerWidth / 2;
+   canvas.height=H
+   canvas.width=W
     requestAnimationFrame(animate);
+    imgPx.drawBoard(c); 
     imageData.forEach((elem, index) => {
       c.putImageData(
         imageData[index].img,
@@ -169,7 +185,7 @@ img.addEventListener("load", () => {
       );
     });
 
-    imgPx.drawBoard(c);
+   
   }
 });
 

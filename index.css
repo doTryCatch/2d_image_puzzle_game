@@ -1,11 +1,20 @@
+
+body{
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 canvas {
     background-color: black;
+    
 }
-
-.container {
-    height: 100vh;
-    width: auto;
+.center{
     display: flex;
     align-items: center;
     justify-content: center;
+
+
 }
+.img{
+    height: 80px;
+    width: 80px;;
+  }
