@@ -18,7 +18,7 @@ document.querySelector("#image").addEventListener("change",(e)=>{
   const imageUrl = URL.createObjectURL(selectedFile); // Create a URL for the selected image
 document.querySelector('.img').src=imageUrl
 img.src=imageUrl
-document.querySelector('.image_container').style.display="block"
+document.querySelector('.image_container').style.display="flex"
 }
 
 })
@@ -144,28 +144,39 @@ img.addEventListener("load", () => {
 
   c.clearRect(0, 0, W, H);
   animate();
+  document.querySelector('.left').addEventListener("click",()=>{
+    swap(arr, imageData, 1);
+
+  })
+  document.querySelector('.right').addEventListener("click",()=>{
+    
+    swap(arr, imageData, -1);
+    
+  })
+  document.querySelector('.up').addEventListener("click",()=>{
+    swap(arr, imageData, 2);
+
+    
+  })
+  document.querySelector('.down').addEventListener("click",()=>{
+    swap(arr, imageData, -2);
+    
+  })
   window.addEventListener("keydown", (e) => {
     switch (e.key) {
-      case "ArrowLeft":
-        console.log("yo");
+      case "ArrowLeft": 
         swap(arr, imageData, 1);
-
         break;
       case "ArrowRight":
-        console.log("yo");
-        swap(arr, imageData, -1);
-
-        break;
+         swap(arr, imageData, -1);
+          break;
       case "ArrowUp":
-        console.log("yo");
         swap(arr, imageData, 2);
-
         break;
       case "ArrowDown":
-        console.log("yo");
         swap(arr, imageData, -2);
-
         break;
+
       default:
         break;
     }
