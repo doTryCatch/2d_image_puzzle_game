@@ -21,6 +21,7 @@ img.addEventListener("load", () => {
   c.drawImage(img, 0, 0, W, H);
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < col; j++) {
+      // to push random index of i and j in arr... this is to make random position order like a puzzle
       if (arr.length == 0) {
         X = Math.floor(0 + Math.random() * row);
         Y = Math.floor(0 + Math.random() * col);
@@ -30,29 +31,34 @@ img.addEventListener("load", () => {
         });
       } else {
         while (repeat(X, Y)) {
+          // check if the random X and Y is same as the previous index in arr then again generate the random pos index
           X = Math.floor(0 + Math.random() * row);
           Y = Math.floor(0 + Math.random() * col);
         }
+        // if not repeat then push pos index into the array
         arr.push({ x: X, y: Y });
       }
 
       const imgData = c.getImageData(
+        // get the image data for a particular height and width from particular position ..this is to split one single image into desired parts
         i * (W / row),
         j * (H / col),
         W / row,
         H / col
       );
+      // push the images parts into imageData array after then
       if (i * j < (row - 1) * (col - 1)) {
         imageData.push({
+          // in this push we gonna push object having image parts value and its random i,j position values associated with that particular image portion
           img: imgData,
+
           x: arr[i * row + j].x,
           y: arr[i * row + j].y,
         });
       }
     }
   }
-  console.log(arr[arr.length - 1]);
-
+  // check repeat function
   function repeat(x, y) {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].x == x && arr[i].y == y) {
@@ -156,11 +162,11 @@ img.addEventListener("load", () => {
     canvas.width = window.innerWidth / 2;
     requestAnimationFrame(animate);
     imageData.forEach((elem, index) => {
-      // c.putImageData(
-      //   imageData[index].img,
-      //   imageData[index].x * (W / row),
-      //   imageData[index].y * (H / col)
-      // );
+      c.putImageData(
+        imageData[index].img,
+        imageData[index].x * (W / row),
+        imageData[index].y * (H / col)
+      );
     });
 
     imgPx.drawBoard(c);
