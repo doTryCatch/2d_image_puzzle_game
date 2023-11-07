@@ -4,8 +4,8 @@ const c2 = canvas.getContext("2d");
 const rect = canvas.getBoundingClientRect();
 var H = canvas.height = rect.height;
 var W = canvas.width = rect.width;
-const row = 5;
-const col = 5;
+const row = 3;
+const col = 3;
 const imgPx = new imgPixels(W, H, row, col);
 const img = new Image();
 
